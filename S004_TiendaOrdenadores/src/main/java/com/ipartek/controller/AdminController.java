@@ -1,0 +1,142 @@
+package com.ipartek.controller;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.ipartek.auxiliares.AdvancedLogger;
+
+import com.ipartek.auxiliares.CSVWriter;
+import com.ipartek.model.Marca;
+import com.ipartek.model.Modelo;
+import com.ipartek.model.Ordenador;
+import com.ipartek.model.Privilegio;
+import com.ipartek.repository.MarcaRepository;
+import com.ipartek.repository.ModeloRepository;
+import com.ipartek.repository.OrdenadorRepository;
+
+import jakarta.servlet.http.HttpSession;
+
+@Controller
+public class AdminController {
+
+	@Autowired
+	private MarcaRepository marcasRepo;
+	@Autowired
+	private ModeloRepository modelosRepo;
+	@Autowired
+	private OrdenadorRepository ordenadoresRepo;
+
+	private static final Logger logger = LogManager.getLogger(AdvancedLogger.class);
+
+	@RequestMapping("/admin")
+	public String admin(Model model, @ModelAttribute("obj_ordenador") Ordenador ord, HttpSession session) {
+		if (session.getAttribute("rol").equals(Privilegio.ADMIN)) {
+
+			model.addAttribute("atr_lista_marcas", marcasRepo.findAll());
+			model.addAttribute("atr_lista_modelos", modelosRepo.findAll());
+			model.addAttribute("atr_lista_ordenadores", ordenadoresRepo.findAll());
+
+			model.addAttribute("obj_producto", new Marca());
+			model.addAttribute("obj_categoria", new Modelo());
+			model.addAttribute("obj_genero", new Ordenador());
+
+			return "admin";
+		} else {
+			return "redirect:https://www.google.es/";
+		}
+
+	}
+
+	@RequestMapping("/adminlogOut")
+	public String cerrarSesion(Model model, HttpSession session) {
+		model.addAttribute("atr_lista_ordenadores", ordenadoresRepo.findAll());
+
+		session.setAttribute("rol", Privilegio.USUARIO);
+		session.setAttribute("Intentos", 0);
+		session.invalidate();
+		
+		return "index";
+	}
+
+	@RequestMapping("/adminBorrarOrdenador")
+	public String borrarAdmin(Model model, int id, HttpSession session) {
+
+		try {
+			ordenadoresRepo.deleteById(id);
+		} catch (NumberFormatException e) {
+			System.err.println("Error con el id");
+			e.printStackTrace();
+		}
+		session.setAttribute("modificacion", "borrarOrdenador");
+		return "redirect:/admin";
+	}
+
+	@RequestMapping("/adminFrmModificarOrdenador")
+	public String modificarFrmOrdAdmin(Model model, @ModelAttribute("obj_ordenador") Ordenador ordenador,
+			@RequestParam(value = "id", required = false) Integer id) {
+		model.addAttribute("atr_lista_ordenadores", ordenadoresRepo.findAll());
+		model.addAttribute("atr_lista_marcas", marcasRepo.findAll());
+		model.addAttribute("atr_lista_modelos", modelosRepo.findAll());
+
+		if (id != null) {
+			ordenador = ordenadoresRepo.findById(id).orElse(new Ordenador());
+		} else {
+			ordenador = new Ordenador();
+
+		}
+
+		model.addAttribute("obj_producto", ordenador);
+		return "frm_modificar_ordenadores";
+	}
+
+	@RequestMapping("/adminModificarOrdenador")
+	public String modificarOrdenadorAdmin(Model model, @ModelAttribute(value = "obj_ordenador") Ordenador ordenador,
+			@RequestParam(value = "param_foto") MultipartFile archivo, HttpSession session) {
+
+		ordenadoresRepo.save(ordenador);
+
+		session.setAttribute("modificacion", "modificarOrdenador");
+		return "redirect:/admin";
+	}
+
+	@RequestMapping("/adminAnadirOrdenador")
+	public String anadirProductoAdmin(Model model, @ModelAttribute(value = "obj_producto") Ordenador ordenador,
+			HttpSession session) {
+
+		model.addAttribute("obj_ordenador", ordenador);
+		ordenadoresRepo.save(ordenador);
+
+		session.setAttribute("modificacion", "anadirOrdenador");
+		return "redirect:/admin";
+	}
+
+//	@RequestMapping("/busquedaFullText")
+//	public String buscarProductoAdmin(Model model, @ModelAttribute(value = "obj_producto") Ordenador ordenador,
+//			HttpSession session) {
+//		model.addAttribute("obj_ordenador", new Ordenador());
+//
+//		List<Ordenador> listaProd = ordenadoresRepo.buscarProducto(ordenador.get, producto.getCategoria().getId(),
+//				producto.getGenero().getId(),producto.getTalla().getId());
+//		
+//		model.addAttribute("atr_lista_productos", listaProd);
+//		model.addAttribute("atr_lista_categorias", categoriasRepo.findAll());
+//		model.addAttribute("atr_lista_generos", generosRepo.findAll());
+//		model.addAttribute("atr_lista_tallas", tallasRepo.findAll());
+//
+//		session.setAttribute("modificacion", "buscarProducto");
+//		return "admin";
+//	}
+}

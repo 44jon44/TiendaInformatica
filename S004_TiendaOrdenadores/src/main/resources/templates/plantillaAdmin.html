@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Plantilla</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+	<header th:fragment="cabecera">
+	    <div class="header-container">
+	        <h1>Sección de Administración</h1>
+	        <form class="login-form" method="post" th:action="@{/adminlogOut}" th:object="${obj_ordenador}">
+	            <input type="submit" class="login-button" value="Cerrar Sesión" />
+	        </form>
+	    </div>
+	</header>
+
+
+
+	<main>
+
+
+		<section>
+			contenido de la pagina
+		</section>
+
+
+	</main>
+
+
+
+</body>
+
+</html>

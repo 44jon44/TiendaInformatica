@@ -1,0 +1,57 @@
+/* Contenedor del header */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px; /* Espaciado interno */
+    background-color: #f8f8f8; /* Color de fondo del header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Estilo del título */
+.header-container h1 {
+    font-size: 24px; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    color: #333; /* Color del texto */
+    margin: 0; /* Eliminar margen */
+}
+
+/* Estilo del formulario de inicio de sesión */
+.login-form {
+    display: flex;
+    align-items: center; /* Centrar verticalmente */
+}
+
+/* Estilo del botón de inicio de sesión */
+.login-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambiar cursor */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+}
+
+/* Efecto hover del botón */
+.login-button:hover {
+    background-color: #45a049; /* Color al pasar el cursor */
+    transform: scale(1.05); /* Aumentar tamaño */
+}
+
+/* Estilo responsive para pantallas pequeñas */
+@media (max-width: 600px) {
+    .header-container {
+        flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+        align-items: flex-start; /* Alinear a la izquierda */
+    }
+
+    .header-container h1 {
+        font-size: 20px; /* Reducir tamaño del título */
+    }
+
+    .login-form {
+        width: 100%; /* Ancho completo */
+        margin-top: 10px; /* Espacio arriba del formulario */
+    }
+}

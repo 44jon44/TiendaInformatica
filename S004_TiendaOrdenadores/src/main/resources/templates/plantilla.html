@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Plantilla</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+	<header th:fragment="cabecera">
+	    <div class="header-container">
+	        <h1>PLANTILLA</h1>
+	        <form class="login-form" method="post" th:action="@{/formLogin}" th:object="${obj_ordenador}">
+	            <input type="submit" class="login-button" value="Iniciar Sesión" />
+	        </form>
+	    </div>
+	</header>
+
+
+
+	<main>
+		<aside th:fragment="menu">
+			<nav>
+				<ul th:each="elem : ${atr_lista_categorias}" id="menu">
+					<li class="elem_menu">
+						<a th:href="@{/menu{nombre}(nombre=${elem.nombre})}">[[${elem.nombre}]]</a>
+
+					</li>
+				</ul>
+				<ul>
+					<li class="elem_menu">
+						<a th:href="@{/formLogin}">Admin</a>
+					</li>
+				</ul>
+			</nav>
+		</aside>
+
+		<section>
+			contenido de la pagina
+		</section>
+
+
+	</main>
+
+
+
+</body>
+
+</html>

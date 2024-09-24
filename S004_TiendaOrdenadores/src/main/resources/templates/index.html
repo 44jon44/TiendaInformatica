@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+	<div th:include="plantilla.html::cabecera"></div>
+
+	<main>
+		<aside>
+			<div th:include="plantilla.html::menu"></div>
+		</aside>
+
+		<section class="tiendaContainer">
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Marca</th>
+						<th>Modelo</th>
+						<th>Anotaciones</th>
+						<th>Capacidad</th>
+						<th>numeroSerie</th>
+						<th>Ram</th>
+						<th>Opciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="elem : ${atr_lista_ordenadores}">
+						<td th:text="${elem.id}">Id</td>
+						<td th:text="${elem.modelo.nombre}">Modelo</td>
+						<td th:text="${elem.marca.nombre}">Marca</td>
+						<td th:text="${elem.anotaciones}">Anotaciones</td>
+						<td th:text="${elem.capacidad}">Capacidad</td>
+						<td th:text="${elem.numeroSerie}">Numero de serie</td>
+						<td th:text="${elem.ram}">Ram</td>						
+						<td>
+							<a th:href="@{/adminBorrarOrdenador(id=${elem.id})}">Borrar</a>
+							<a th:href="@{/adminFrmModificarProducto(id=${elem.id})}">Modificar</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</main>
+</body>
+
+</html>

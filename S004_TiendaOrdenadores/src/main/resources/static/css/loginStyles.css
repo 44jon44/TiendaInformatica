@@ -1,0 +1,62 @@
+/* Estilo general del cuerpo */
+body {
+    font-family: Arial, sans-serif; /* Fuente legible */
+    background-color: #f2f2f2; /* Color de fondo claro */
+    margin: 0; /* Eliminar margen */
+    padding: 0; /* Eliminar padding */
+    display: flex; /* Flexbox para centrar */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    height: 100vh; /* Altura completa de la vista */
+}
+
+/* Contenedor del formulario de inicio de sesión */
+.login-container {
+    background-color: white; /* Fondo blanco para el formulario */
+    padding: 60px; /* Aumentar el espaciado interno */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    width: 90%; /* Ancho del 90% de la pantalla */
+    max-width: 600px; /* Ancho máximo para pantallas grandes */
+    height: auto; /* Altura automática para adaptarse al contenido */
+}
+
+/* Estilo del título */
+.login-container h2 {
+    margin-bottom: 20px; /* Espacio debajo del título */
+    text-align: center; /* Centrar texto */
+}
+
+/* Estilo de las etiquetas */
+label {
+    display: block; /* Etiquetas como bloques */
+    margin-bottom: 5px; /* Espacio debajo de las etiquetas */
+}
+
+/* Estilo de los campos de entrada */
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    margin-bottom: 15px; /* Espacio debajo de los campos */
+    border: 1px solid #ccc; /* Borde ligero */
+    border-radius: 5px; /* Esquinas redondeadas */
+    box-sizing: border-box; /* Incluir padding y borde en el ancho total */
+}
+
+/* Estilo del botón de envío */
+button {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambiar cursor al pasar */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+/* Efecto hover del botón */
+button:hover {
+    background-color: #45a049; /* Color al pasar el cursor */
+}
