@@ -21,7 +21,7 @@ public class CSVWriter {
             String modificacion = (String) session.getAttribute("modificacion");
 
             switch (modificacion) {
-                case "copiaSeguridadProductos":
+                case "copiaSeguridadOrdenadores":
                     // Cabecera del csv para productos
                     writer.write("id,numeroSerie,marca,modelo,anotaciones,capacidad,ram" + "\n");
                     for (Object prod : objetos) {

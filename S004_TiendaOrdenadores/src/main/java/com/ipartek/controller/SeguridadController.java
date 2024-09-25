@@ -37,22 +37,25 @@ public class SeguridadController {
 	private static final Logger logger = LogManager.getLogger(AdvancedLogger.class);
 
 
-	@RequestMapping("/copiaSeguridadModelo")
+	@RequestMapping("/copiaSeguridadModelos")
 	public String copiaSeguriadProductos(Model model, @ModelAttribute(value = "obj_modelo") Modelo modelo,
 			HttpSession session) {
+		logger.info("Entra2");
+
 		model.addAttribute("obj_modelo", new Modelo());
 
 		List<Object> listaModelo = new ArrayList<>(modelosRepo.findAll());
-		session.setAttribute("modificacion", "copiaSeguridadProductos");
+		session.setAttribute("modificacion", "copiaSeguridadModelos");
 
 		CSVWriter.escribirCSV("src/main/resources/copiasSeguridad/modelos.csv", listaModelo, session);
 
 		return "redirect:/admin";
 	}
 
-	@RequestMapping("/copiaSeguridadMarca")
+	@RequestMapping("/copiaSeguridadMarcas")
 	public String copiaSeguriadCategorias(Model model, @ModelAttribute(value = "obj_marca") Marca marca,
 			HttpSession session) {
+		logger.info("Entra1");
 		model.addAttribute("obj_marca", new Marca());
 
 		List<Object> listaMarca = new ArrayList<>(marcasRepo.findAll());
@@ -66,6 +69,7 @@ public class SeguridadController {
 	public String copiaSeguriadGeneros(Model model, @ModelAttribute(value = "obj_ordenador") Ordenador ordenador,
 
 			HttpSession session) {
+		logger.info("Entra copia PC");
 		model.addAttribute("obj_ordenador", new Ordenador());
 
 		List<Object> listaOrd = new ArrayList<>(ordenadoresRepo.findAll());
@@ -93,13 +97,10 @@ public class SeguridadController {
 		return "redirect:/admin";
 	}
 
-	@RequestMapping("/restaurarModelo")
+	@RequestMapping("/restaurarModelos")
 	public String restaurarCategorias(Model model, @ModelAttribute(value = "obj_modelo") Modelo modelo,
 			HttpSession session) {
 		model.addAttribute("obj_modelo", new Modelo());
-		
-		 
-
 
 		session.setAttribute("modificacion", "restaurarModelos");
 		List<Object> listaCat = CSVReader.leerCSV("src/main/resources/copiasSeguridad/modelos.csv",
@@ -112,7 +113,7 @@ public class SeguridadController {
 		return "redirect:/admin";
 	}
 
-	@RequestMapping("/restaurarMarca")
+	@RequestMapping("/restaurarMarcas")
 	public String restaurarGeneros(Model model, @ModelAttribute(value = "obj_marca") Marca marca, HttpSession session) {
 		model.addAttribute("obj_marca", new Marca());
 

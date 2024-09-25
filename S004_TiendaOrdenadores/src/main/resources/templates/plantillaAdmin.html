@@ -12,7 +12,7 @@
 	<header th:fragment="cabecera">
 	    <div class="header-container">
 	        <h1>Sección de Administración</h1>
-	        <form class="login-form" method="post" th:action="@{/adminlogOut}" th:object="${obj_ordenador}">
+	        <form class="login-form" method="post" th:action="@{/adminlogOut}">
 	            <input type="submit" class="login-button" value="Cerrar Sesión" />
 	        </form>
 	    </div>

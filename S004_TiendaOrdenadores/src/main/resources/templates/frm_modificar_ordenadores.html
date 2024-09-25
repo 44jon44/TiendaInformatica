@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Plantilla</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+	<main>
+
+		<section>
+			<form method="post" th:action="@{/adminModificarOrdenador}" th:object="${obj_ordenador}"
+				enctype="multipart/form-data">
+
+				<label>ID: </label>
+				<input type="text" th:field="*{id}">
+				<br>
+
+				<label>Marca: </label>
+				<select th:field="*{marca.id}">
+					<option th:each="elem :${atr_lista_marcas}" th:text="${elem.nombre}" th:value="${elem.id}">
+					</option>
+				</select>
+				<br>
+				<label>Modelo: </label>
+				<select th:field="*{modelo.id}">
+					<option th:each="elem :${atr_lista_modelos}" th:text="${elem.nombre}" th:value="${elem.id}">
+					</option>
+				</select>
+				<br>
+				<label>Capacidad: </label>
+				<input type="text" th:field="*{capacidad}">
+				<br>
+
+				<label>Numero de Serie: </label>
+				<input type="text" th:field="*{numeroSerie}">
+				<br>
+
+				<label>Ram: </label>
+				<input type="text" th:field="*{ram}">
+				<br>
+
+				<label>Anotaciones: </label>
+				<input type="text" name="anotaciones" th:field="*{anotaciones}">
+				<br>
+
+				<input type="submit" value="Modificar ordenador">
+
+			</form>
+		</section>
+	</main>
+
+</body>
+
+</html>

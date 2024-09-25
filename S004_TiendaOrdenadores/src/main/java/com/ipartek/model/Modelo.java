@@ -36,6 +36,10 @@ public class Modelo {
 		this.nombre = "";
 	}
 
+	public Modelo(String string) {
+		this.nombre=string;
+	}
+
 	public int getId() {
 		return id;
 	}

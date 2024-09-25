@@ -49,9 +49,9 @@ public class AdminController {
 			model.addAttribute("atr_lista_modelos", modelosRepo.findAll());
 			model.addAttribute("atr_lista_ordenadores", ordenadoresRepo.findAll());
 
-			model.addAttribute("obj_producto", new Marca());
-			model.addAttribute("obj_categoria", new Modelo());
-			model.addAttribute("obj_genero", new Ordenador());
+			model.addAttribute("obj_marca", new Marca());
+			model.addAttribute("obj_modelo", new Modelo());
+			model.addAttribute("obj_ordenador", new Ordenador());
 
 			return "admin";
 		} else {
@@ -62,13 +62,10 @@ public class AdminController {
 
 	@RequestMapping("/adminlogOut")
 	public String cerrarSesion(Model model, HttpSession session) {
-		model.addAttribute("atr_lista_ordenadores", ordenadoresRepo.findAll());
 
-		session.setAttribute("rol", Privilegio.USUARIO);
-		session.setAttribute("Intentos", 0);
 		session.invalidate();
-		
-		return "index";
+
+		return "redirect:/";
 	}
 
 	@RequestMapping("/adminBorrarOrdenador")
@@ -98,13 +95,13 @@ public class AdminController {
 
 		}
 
-		model.addAttribute("obj_producto", ordenador);
+		model.addAttribute("obj_ordenador", ordenador);
 		return "frm_modificar_ordenadores";
 	}
 
 	@RequestMapping("/adminModificarOrdenador")
 	public String modificarOrdenadorAdmin(Model model, @ModelAttribute(value = "obj_ordenador") Ordenador ordenador,
-			@RequestParam(value = "param_foto") MultipartFile archivo, HttpSession session) {
+			HttpSession session) {
 
 		ordenadoresRepo.save(ordenador);
 
@@ -139,4 +136,111 @@ public class AdminController {
 //		session.setAttribute("modificacion", "buscarProducto");
 //		return "admin";
 //	}
+	@RequestMapping("/adminBorrarMarca")
+	public String borrarMarcaAdmin(Model model, int id, HttpSession session) {
+
+		try {
+			ordenadoresRepo.eliminarOrdenadoresPorMarca(id);
+			marcasRepo.deleteById(id);
+		} catch (NumberFormatException e) {
+			System.err.println("Error con el id");
+			e.printStackTrace();
+		}
+		session.setAttribute("modificacion", "borrarOrdenador");
+		return "redirect:/admin";
+	}
+
+	@RequestMapping("/adminFrmModificarMarca")
+	public String modificarFrmMarcaAdmin(Model model, @ModelAttribute("obj_marca") Marca marca,
+			@RequestParam(value = "id", required = false) Integer id) {
+		model.addAttribute("atr_lista_ordenadores", ordenadoresRepo.findAll());
+		model.addAttribute("atr_lista_marcas", marcasRepo.findAll());
+		model.addAttribute("atr_lista_modelos", modelosRepo.findAll());
+
+		if (id != null) {
+			marca = marcasRepo.findById(id).orElse(new Marca());
+		} else {
+			marca = new Marca();
+
+		}
+
+		model.addAttribute("obj_marca", marca);
+		return "frm_modificar_marcas";
+	}
+
+	@RequestMapping("/adminModificarMarca")
+	public String modificarMarcaAdmin(Model model, @ModelAttribute(value = "obj_marca") Marca marca,
+			HttpSession session) {
+
+		marcasRepo.save(marca);
+
+		session.setAttribute("modificacion", "modificarMarca");
+		return "redirect:/admin";
+	}
+
+	@RequestMapping("/adminAnadirMarca")
+	public String anadirMarcaAdmin(Model model, @ModelAttribute(value = "obj_marca") Marca marca, HttpSession session) {
+
+		model.addAttribute("obj_marca", marca);
+		marca.setId(marcasRepo.findMaxId());
+		marcasRepo.save(marca);
+
+		session.setAttribute("modificacion", "anadirMarca");
+		return "redirect:/admin";
+	}
+
+//--------------------------------------------------------------------------------
+	@RequestMapping("/adminBorrarModelo")
+	public String borrarModeloAdmin(Model model, int id, HttpSession session) {
+
+		try {
+			ordenadoresRepo.eliminarOrdenadoresPorModelo(id);
+			modelosRepo.deleteById(id);
+		} catch (NumberFormatException e) {
+			System.err.println("Error con el id");
+			e.printStackTrace();
+		}
+		session.setAttribute("modificacion", "borrarModelo");
+		return "redirect:/admin";
+	}
+
+	@RequestMapping("/adminFrmModificarModelo")
+	public String modificarFrmModeloAdmin(Model model, @ModelAttribute("obj_modelo") Modelo modelo,
+			@RequestParam(value = "id", required = false) Integer id) {
+		model.addAttribute("atr_lista_ordenadores", ordenadoresRepo.findAll());
+		model.addAttribute("atr_lista_marcas", marcasRepo.findAll());
+		model.addAttribute("atr_lista_modelos", modelosRepo.findAll());
+
+		if (id != null) {
+			modelo = modelosRepo.findById(id).orElse(new Modelo());
+		} else {
+			modelo = new Modelo();
+
+		}
+
+		model.addAttribute("obj_modelo", modelo);
+		return "frm_modificar_modelos";
+	}
+
+	@RequestMapping("/adminModificarModelo")
+	public String modificarModeloAdmin(Model model, @ModelAttribute(value = "obj_modelo") Modelo modelo,
+			HttpSession session) {
+
+		modelosRepo.save(modelo);
+
+		session.setAttribute("modificacion", "modificarModelo");
+		return "redirect:/admin";
+	}
+
+	@RequestMapping("/adminAnadirModelo")
+	public String anadirModeloAdmin(Model model, @ModelAttribute(value = "obj_modelo") Modelo modelo,
+			HttpSession session) {
+
+		model.addAttribute("obj_modelo", modelo);
+		modelo.setId(modelosRepo.findMaxId());
+		modelosRepo.save(modelo);
+
+		session.setAttribute("modificacion", "anadirModelo");
+		return "redirect:/admin";
+	}
 }

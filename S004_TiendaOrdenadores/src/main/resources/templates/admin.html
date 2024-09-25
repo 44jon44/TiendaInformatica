@@ -4,23 +4,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Index</title>
-	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/adminStyles.css">
 </head>
 
 <body>
 
 	<div th:include="plantillaAdmin.html::cabecera"></div>
 
-	<main>
+	<div class="adminContainer">
 
 
-		<section class="tiendaContainer">
-			<table border="1">
+		<div class="Tables">
+			<h2>Ordenadores</h2>
+			<table border="1" class="table">
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Marca</th>
 						<th>Modelo</th>
+						<th>Marca</th>
 						<th>Anotaciones</th>
 						<th>Capacidad</th>
 						<th>numeroSerie</th>
@@ -36,16 +37,143 @@
 						<td th:text="${elem.anotaciones}">Anotaciones</td>
 						<td th:text="${elem.capacidad}">Capacidad</td>
 						<td th:text="${elem.numeroSerie}">Numero de serie</td>
-						<td th:text="${elem.ram}">Ram</td>						
+						<td th:text="${elem.ram}">Ram</td>
 						<td>
 							<a th:href="@{/adminBorrarOrdenador(id=${elem.id})}">Borrar</a>
-							<a th:href="@{/adminFrmModificarProducto(id=${elem.id})}">Modificar</a>
+							<a th:href="@{/adminFrmModificarOrdenador(id=${elem.id})}">Modificar</a>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-		</section>
-	</main>
+			<h2>Marcas</h2>
+			<table border="1" class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nombre</th>
+						<th>Opciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="elem : ${atr_lista_marcas}">
+						<td th:text="${elem.id}">Id</td>
+						<td th:text="${elem.nombre}">Nombre</td>
+						<td>
+							<a th:href="@{/adminBorrarMarca(id=${elem.id})}">Borrar</a>
+							<a th:href="@{/adminFrmModificarMarca(id=${elem.id})}">Modificar</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h2>Modelos</h2>
+			<table border="1" class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nombre</th>
+						<th>Opciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="elem : ${atr_lista_modelos}">
+						<td th:text="${elem.id}">Id</td>
+						<td th:text="${elem.nombre}">Nombre</td>
+						<td>
+							<a th:href="@{/adminBorrarModelo(id=${elem.id})}">Borrar</a>
+							<a th:href="@{/adminFrmModificarModelo(id=${elem.id})}">Modificar</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="SectionActions">
+			<div class="FormsContainer">
+				<h2>Añadir Producto</h2>
+
+				<form method="post" th:action="@{/adminAnadirOrdenador}" th:object="${obj_ordenador}">
+
+					<label>ID: </label>
+					<input type="text" th:field="*{id}">
+					<br>
+
+					<label>Marca: </label>
+					<select th:field="*{marca.id}">
+						<option th:each="elem :${atr_lista_marcas}" th:text="${elem.nombre}" th:value="${elem.id}">
+						</option>
+					</select>
+					<br>
+					<label>Modelo: </label>
+					<select th:field="*{modelo.id}">
+						<option th:each="elem :${atr_lista_modelos}" th:text="${elem.nombre}" th:value="${elem.id}">
+						</option>
+					</select>
+					<br>
+					<label>Capacidad: </label>
+					<input type="text" th:field="*{capacidad}">
+					<br>
+
+					<label>Numero de Serie: </label>
+					<input type="text" th:field="*{numeroSerie}">
+					<br>
+
+					<label>Ram: </label>
+					<input type="text" th:field="*{ram}">
+					<br>
+
+					<label>Anotaciones: </label>
+					<input type="text" name="anotaciones" th:field="*{anotaciones}">
+					<br>
+
+					<input type="submit" value="Insertar ordenador">
+
+				</form>
+				<h2>Añadir Modelo</h2>
+				<form method="post" th:action="@{/adminAnadirModelo}" th:object="${obj_modelo}">
+
+					<label>Nombre: </label>
+					<input type="text" th:field="*{nombre}">
+					<br>
+
+					<input type="submit" value="Insertar modelo">
+
+				</form>
+				<h2>Añadir Marca</h2>
+				<form method="post" th:action="@{/adminAnadirMarca}" th:object="${obj_marca}">
+
+					<label>Nombre: </label>
+					<input type="text" th:field="*{nombre}">
+					<br>
+
+					<input type="submit" value="Insertar marca">
+					<div class="ButtonsContainer">
+						<h2>Generar copia de Seguridad</h2>
+						
+						<form action="/copiaSeguridadOrdenadores" method="POST">
+							<input type="submit" value="Generar CSV Modelos" />
+						</form>
+						
+						<form action="/copiaSeguridadModelos" method="POST">
+							<input type="submit" value="Generar CSV Modelos" />
+						</form>
+						<form action="/copiaSeguridadMarcas" method="POST">
+							<input type="submit" value="Generar CSV Marcas" />
+						</form>
+						
+						<h2>Restaurar copia de Seguridad</h2>
+						<form action="/restaurarOrdenadores" method="POST">
+							<input type="submit" value="Restaurar CSV Ordenadores" />
+						</form>
+						<form action="/restaurarModelos" method="POST">
+							<input type="submit" value="Restaurar CSV Modelos" />
+						</form>
+						<form action="/restaurarMarcas" method="POST">
+							<input type="submit" value="Restaurar CSV Marcas" />
+						</form>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

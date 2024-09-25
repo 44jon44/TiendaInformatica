@@ -31,13 +31,11 @@ public class CSVReader {
 					
 					ordenador.setId(Integer.parseInt(valores[0]));
 					ordenador.setNumeroSerie(valores[1]);
-					ordenador.setMarca(new Marca(0, valores[1]));
-					ordenador.setModelo(new Modelo(0, valores[1]));
-					ordenador.setAnotaciones(valores[3]);
-					ordenador.setCapacidad(valores[3]);
-					ordenador.setRam(valores[3]);
-					
-					
+					ordenador.setMarca(new Marca( valores[2]));
+					ordenador.setModelo(new Modelo(1, valores[3]));
+					ordenador.setAnotaciones(valores[4]);
+					ordenador.setCapacidad(valores[5]);
+					ordenador.setRam(valores[6]);
 					
 					ordenadores.add(ordenador);
 				}

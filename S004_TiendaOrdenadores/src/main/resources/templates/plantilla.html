@@ -20,22 +20,7 @@
 
 
 
-	<main>
-		<aside th:fragment="menu">
-			<nav>
-				<ul th:each="elem : ${atr_lista_categorias}" id="menu">
-					<li class="elem_menu">
-						<a th:href="@{/menu{nombre}(nombre=${elem.nombre})}">[[${elem.nombre}]]</a>
 
-					</li>
-				</ul>
-				<ul>
-					<li class="elem_menu">
-						<a th:href="@{/formLogin}">Admin</a>
-					</li>
-				</ul>
-			</nav>
-		</aside>
 
 		<section>
 			contenido de la pagina

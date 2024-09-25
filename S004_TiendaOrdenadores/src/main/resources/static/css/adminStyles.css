@@ -1,0 +1,28 @@
+.adminContainer {  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Tables SectionActions";
+}
+
+.Tables { grid-area: Tables; }
+
+.SectionActions { grid-area: SectionActions; }
+
+
+
+.sectionContainer {  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "formsContainer"
+    "buttonContainer";
+}
+
+.formsContainer { grid-area: formsContainer; }
+
+.buttonContainer { grid-area: buttonContainer; }

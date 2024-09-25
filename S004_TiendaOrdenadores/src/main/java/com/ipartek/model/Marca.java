@@ -38,6 +38,10 @@ public class Marca {
 		this.nombre = "";
 	}
 
+	public Marca(String string) {
+		this.nombre=string;
+	}
+
 	public int getId() {
 		return id;
 	}
