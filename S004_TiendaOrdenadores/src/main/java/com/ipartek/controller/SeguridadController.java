@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ipartek.auxiliares.AdvancedLogger;
-import com.ipartek.auxiliares.CSVReader;
+
 import com.ipartek.auxiliares.CSVWriter;
 import com.ipartek.model.Marca;
 import com.ipartek.model.Modelo;
@@ -78,53 +78,4 @@ public class SeguridadController {
 
 		return "redirect:/admin";
 	}
-	
-
-	@RequestMapping("/restaurarOrdenadores")
-	public String restaurarProductos(Model model, @ModelAttribute(value = "obj_ordenador") Ordenador ordenador,
-			HttpSession session) {
-		model.addAttribute("obj_ordenador", new Ordenador());
-
-		session.setAttribute("modificacion", "restaurarOrdenadores");
-		List<Object> listaOrd = CSVReader.leerCSV("src/main/resources/copiasSeguridad/ordenadores.csv",
-				Ordenador.class.getName());
-
-		for (Object object : listaOrd) {
-
-			ordenadoresRepo.save((Ordenador) object);
-		}
-
-		return "redirect:/admin";
-	}
-
-	@RequestMapping("/restaurarModelos")
-	public String restaurarCategorias(Model model, @ModelAttribute(value = "obj_modelo") Modelo modelo,
-			HttpSession session) {
-		model.addAttribute("obj_modelo", new Modelo());
-
-		session.setAttribute("modificacion", "restaurarModelos");
-		List<Object> listaCat = CSVReader.leerCSV("src/main/resources/copiasSeguridad/modelos.csv",
-				Modelo.class.getName());
-
-		for (Object object : listaCat) {
-			modelosRepo.save((Modelo) object);
-		}
-		
-		return "redirect:/admin";
-	}
-
-	@RequestMapping("/restaurarMarcas")
-	public String restaurarGeneros(Model model, @ModelAttribute(value = "obj_marca") Marca marca, HttpSession session) {
-		model.addAttribute("obj_marca", new Marca());
-
-		session.setAttribute("modificacion", "restaurarMarcas");
-		List<Object> listaMarca = CSVReader.leerCSV("src/main/resources/copiasSeguridad/marcas.csv",
-				Marca.class.getName());
-
-		for (Object object : listaMarca) {
-			marcasRepo.save((Marca) object);		
-		}		
-		return "redirect:/admin";
-	}
-
 }

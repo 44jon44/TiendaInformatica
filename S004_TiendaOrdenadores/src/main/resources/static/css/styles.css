@@ -1,4 +1,17 @@
 /* Contenedor del header */
+h1 {
+    font-size: 36px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    color: #333; /* Color del texto */
+    text-align: center; /* Alinear el texto al centro */
+    margin: 20px 0; /* Espaciado arriba y abajo */
+    padding: 10px; /* Espaciado interno */
+    border-bottom: 2px solid #007BFF; /* Línea debajo del texto */
+    text-transform: uppercase; /* Transformar el texto a mayúsculas */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    line-height: 1.5; /* Altura de línea */
+    transition: color 0.3s; /* Transición suave para el color */
+}
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -55,3 +68,76 @@
         margin-top: 10px; /* Espacio arriba del formulario */
     }
 }
+/* Contenedor principal de la tienda */
+.tiendaContainer {
+    max-width: 1200px; /* Ancho máximo del contenedor */
+    margin: 20px auto; /* Centrar el contenedor con margen superior */
+    padding: 20px; /* Espaciado interno */
+    background-color: #fff; /* Fondo blanco para la tabla */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilo de la tabla */
+table {
+    width: 100%; /* Ancho completo */
+    border-collapse: collapse; /* Colapsar bordes */
+}
+
+/* Encabezado de la tabla */
+thead {
+    background-color: #007BFF; /* Color de fondo del encabezado */
+    color: white; /* Color del texto del encabezado */
+}
+
+th, td {
+    padding: 12px; /* Espaciado interno */
+    text-align: left; /* Alinear texto a la izquierda */
+    border: 1px solid #ccc; /* Bordes de celdas */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Color de fondo para filas pares */
+}
+
+td:hover {
+    background-color: #e9ecef; /* Color de fondo al pasar el mouse */
+}
+
+td {
+    font-size: 14px; /* Tamaño de fuente para las celdas */
+}
+
+/* Estilos para el diseño responsive */
+@media (max-width: 600px) {
+    th, td {
+        font-size: 12px; /* Reducir el tamaño de la fuente en pantallas pequeñas */
+        padding: 8px; /* Reducir el espaciado interno */
+    }
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 8px 16px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #007BFF; /* Color del enlace */
+    border: 1px solid #007BFF; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #007BFF; /* Color de fondo al pasar el cursor */
+    color: white; /* Color del texto al pasar el cursor */
+}
+
+.pagination span {
+    margin: 0 10px;
+    align-self: center; /* Centrar verticalmente el texto */
+}
+

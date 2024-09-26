@@ -1,0 +1,69 @@
+/* Estilos generales del body */
+body {
+    font-family: Arial, sans-serif; /* Fuente general */
+    background-color: #f4f4f4; /* Color de fondo */
+    margin: 0; /* Sin margen */
+    padding: 20px; /* Espacio alrededor del contenido */
+}
+
+/* Estilo del main */
+main {
+    max-width: 600px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar el contenedor */
+    background-color: white; /* Fondo blanco */
+    padding: 20px; /* Espacio interno */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Estilo de las secciones */
+section {
+    margin: 20px 0; /* Espacio superior e inferior */
+}
+
+/* Estilo de los labels */
+label {
+    display: block; /* Hacer que los labels ocupen toda la línea */
+    margin-bottom: 5px; /* Espacio debajo de los labels */
+    font-weight: bold; /* Negrita */
+    color: #333; /* Color del texto */
+}
+
+/* Estilo de los inputs y selects */
+input[type="text"], select {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espacio interno */
+    margin-bottom: 15px; /* Espacio debajo de cada campo */
+    border: 1px solid #ccc; /* Borde sutil */
+    border-radius: 4px; /* Esquinas redondeadas */
+    box-sizing: border-box; /* Incluir padding y border en el ancho */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+/* Estilo del botón de envío */
+input[type="submit"] {
+    background-color: #007BFF; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px; /* Espacio interno */
+    border-radius: 4px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambiar cursor a puntero */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave para el color */
+}
+
+/* Efecto hover para el botón */
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Color al pasar el mouse */
+}
+
+/* Estilo responsive */
+@media (max-width: 600px) {
+    main {
+        padding: 15px; /* Espacio interno reducido en pantallas pequeñas */
+    }
+
+    input[type="submit"] {
+        width: 100%; /* Botón de envío de ancho completo en móviles */
+    }
+}

@@ -2,6 +2,8 @@ package com.ipartek.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,5 +25,9 @@ public interface OrdenadorRepository extends JpaRepository<Ordenador, Integer> {
 	@Transactional
 	@Query(value = "DELETE FROM ordenadores WHERE modelo = :modelo_id", nativeQuery = true)
 	void eliminarOrdenadoresPorModelo(@Param("modelo_id") int id);
-
+	
+	
+	@Query(value = "SELECT * FROM ordenadores where numeroSerie= :numeroSerie",nativeQuery = true)
+	List<Ordenador> buscarProducto(String numeroSerie);
+	
 }

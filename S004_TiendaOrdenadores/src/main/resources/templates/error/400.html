@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 400 - Solicitud Incorrecta</title>
+    <link rel="stylesheet" th:href="@{/css/error.css}"> <!-- Enlaza tu archivo CSS aquí -->
+</head>
+
+<body>
+    <div class="container">
+        <h1>Error 400</h1>
+        <p>Lo sentimos, la solicitud que has realizado es incorrecta.</p>
+        <p>Por favor, verifica la información e inténtalo de nuevo.</p>
+		<form method="post" th:action="@{/adminlogOut}">
+		    <input type="submit" class="login-button" value="Volver a inicio" />
+		</form>
+    </div>
+</body>
+
+</html>

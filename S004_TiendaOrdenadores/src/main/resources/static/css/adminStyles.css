@@ -1,28 +1,294 @@
-.adminContainer {  display: grid;
+h1 {
+    font-size: 36px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    color: #333; /* Color del texto */
+    text-align: center; /* Alinear el texto al centro */
+    margin: 20px 0; /* Espaciado arriba y abajo */
+    padding: 10px; /* Espaciado interno */
+    border-bottom: 2px solid #007BFF; /* Línea debajo del texto */
+    text-transform: uppercase; /* Transformar el texto a mayúsculas */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    line-height: 1.5; /* Altura de línea */
+    transition: color 0.3s; /* Transición suave para el color */
+}
+.adminContainer {
+  display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
-  grid-template-areas:
-    "Tables SectionActions";
+  grid-template-areas: "Tables SectionActions";
 }
 
-.Tables { grid-area: Tables; }
+.Tables {
+  grid-area: Tables;
+}
 
-.SectionActions { grid-area: SectionActions; }
+.SectionActions {
+  grid-area: SectionActions;
+}
 
-
-
-.sectionContainer {  display: grid;
+.sectionContainer {
+  display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
-  grid-template-areas:
-    "formsContainer"
-    "buttonContainer";
+  grid-template-areas: "formsContainer" "buttonContainer";
 }
 
-.formsContainer { grid-area: formsContainer; }
+.formsContainer {
+  grid-area: formsContainer;
+}
 
-.buttonContainer { grid-area: buttonContainer; }
+.buttonContainer {
+  grid-area: buttonContainer;
+}
+
+.ModeloMarcacontainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas: "Marcas Modelos";
+}
+
+.Marcas {
+  grid-area: Marcas;
+}
+
+.Modelos {
+  grid-area: Modelos;
+}
+
+/* Estilo del contenedor de la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+/*Filtro Container*/
+.filtroContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinear todo a la izquierda */
+  gap: 10px; /* Espaciado entre los elementos */
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.filtroContainer label {
+  font-weight: bold;
+  color: #333;
+}
+
+.filtroContainer input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Estilo para el botón "Buscar" */
+.filtroContainer input[type="submit"] {
+  padding: 8px 12px;
+  background-color: #007BFF; /* Azul */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilo para el botón "Resetear Filtros" */
+.filtroContainer .reset-button {
+  padding: 8px 12px;
+  background-color: #FF4136; /* Rojo */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.filtroContainer .reset-button:hover {
+  background-color: #e12f24; /* Rojo oscuro al pasar el cursor */
+}
+
+/* Hover para el botón de buscar */
+.filtroContainer input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+
+
+/* Contenedor del header */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo del título */
+.header-container h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+/* Estilo del formulario de inicio de sesión */
+.login-form {
+  display: flex;
+  align-items: center;
+}
+
+.login-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Estilo responsive para pantallas pequeñas */
+@media (max-width: 600px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-container h1 {
+    font-size: 20px;
+  }
+
+  .login-form {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+/*//////////////////////////////////////////*/
+.SectionActions {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.FormsContainer {
+  margin-bottom: 20px;
+}
+
+.FormsContainer h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.FormsContainer form {
+  display: grid;
+  grid-gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+/* Alinear label e input/select */
+.FormsContainer .form-group {
+  display: flex;
+  align-items: center;
+}
+
+.FormsContainer label {
+  font-weight: bold;
+  color: #555;
+  margin-right: 10px; /* Espaciado entre label y input/select */
+}
+
+.FormsContainer input[type="text"],
+.FormsContainer select {
+  padding: 8px;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.FormsContainer input[type="submit"] {
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.FormsContainer input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos específicos para la sección de "Generar copia de seguridad" */
+.ButtonsContainer {
+  margin-top: 20px;
+}
+
+.ButtonsContainer h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.ButtonsContainer form {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.ButtonsContainer input[type="submit"] {
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ButtonsContainer input[type="submit"]:hover {
+  background-color: #218838;
+}

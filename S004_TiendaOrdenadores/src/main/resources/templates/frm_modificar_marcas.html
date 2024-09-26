@@ -3,8 +3,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Plantilla</title>
-	<link rel="stylesheet" href="styles.css">
+	<title>Admin</title>
+	<link rel="stylesheet" href="css/formStyles.css">
 </head>
 
 <body>
@@ -14,9 +14,6 @@
 		<section>
 			<form method="post" th:action="@{/adminModificarMarca}" th:object="${obj_marca}">
 
-				<label>ID: </label>
-				<input type="text" th:field="*{id}">
-				<br>
 
 				<label>Nombre: </label>
 				<input type="text" th:field="*{nombre}">

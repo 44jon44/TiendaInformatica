@@ -3,8 +3,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Plantilla</title>
-	<link rel="stylesheet" href="styles.css">
+	<title>Admin</title>
+		<link rel="stylesheet" href="css/formStyles.css">
 </head>
 
 <body>
@@ -12,12 +12,7 @@
 	<main>
 
 		<section>
-			<form method="post" th:action="@{/adminModificarOrdenador}" th:object="${obj_ordenador}"
-				enctype="multipart/form-data">
-
-				<label>ID: </label>
-				<input type="text" th:field="*{id}">
-				<br>
+			<form method="post" th:action="@{/adminModificarOrdenador}" th:object="${obj_ordenador}">
 
 				<label>Marca: </label>
 				<select th:field="*{marca.id}">

@@ -120,22 +120,30 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
-//	@RequestMapping("/busquedaFullText")
-//	public String buscarProductoAdmin(Model model, @ModelAttribute(value = "obj_producto") Ordenador ordenador,
-//			HttpSession session) {
-//		model.addAttribute("obj_ordenador", new Ordenador());
-//
-//		List<Ordenador> listaProd = ordenadoresRepo.buscarProducto(ordenador.get, producto.getCategoria().getId(),
-//				producto.getGenero().getId(),producto.getTalla().getId());
-//		
-//		model.addAttribute("atr_lista_productos", listaProd);
-//		model.addAttribute("atr_lista_categorias", categoriasRepo.findAll());
-//		model.addAttribute("atr_lista_generos", generosRepo.findAll());
-//		model.addAttribute("atr_lista_tallas", tallasRepo.findAll());
-//
-//		session.setAttribute("modificacion", "buscarProducto");
-//		return "admin";
-//	}
+	@RequestMapping("/buscarPorNumeroSerie")
+	public String buscarNumeroSerieAdmin(Model model, @ModelAttribute(value = "obj_ordenador") Ordenador ordenador,
+			HttpSession session) {
+		model.addAttribute("obj_ordenador", new Ordenador());
+		model.addAttribute("obj_marca", new Marca());
+		model.addAttribute("obj_modelo", new Modelo());
+
+		List<Ordenador> listaProd = ordenadoresRepo.buscarProducto(ordenador.getNumeroSerie());
+		
+		model.addAttribute("atr_lista_ordenadores", listaProd);
+		model.addAttribute("atr_lista_marcas", marcasRepo.findAll());
+		model.addAttribute("atr_lista_modelos", modelosRepo.findAll());
+
+		session.setAttribute("modificacion", "buscarProducto");
+		return "admin";
+	}
+	@RequestMapping("/resetearFiltro")
+	public String restearFiltroAdmin(Model model, @ModelAttribute(value = "obj_ordenador") Ordenador ordenador,
+			HttpSession session) {
+		return "redirect:/admin";
+	}
+	
+	
+	
 	@RequestMapping("/adminBorrarMarca")
 	public String borrarMarcaAdmin(Model model, int id, HttpSession session) {
 

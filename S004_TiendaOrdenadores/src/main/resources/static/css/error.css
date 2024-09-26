@@ -1,0 +1,56 @@
+/* Estilos generales para el contenedor */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    height: 100vh; /* Altura completa de la ventana */
+    background-color: #f8f8f8; /* Color de fondo */
+    text-align: center; /* Centra el texto */
+}
+
+/* Estilo del título */
+.container h1 {
+    font-size: 48px; /* Tamaño del título */
+    color: #e74c3c; /* Color del texto del título */
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+/* Estilo del párrafo */
+.container p {
+    font-size: 18px; /* Tamaño del texto */
+    color: #333; /* Color del texto */
+    margin-bottom: 20px; /* Espacio debajo del párrafo */
+}
+
+/* Estilo del botón de cerrar sesión */
+.login-button {
+    padding: 10px 20px; /* Espaciado interno del botón */
+    background-color: #e74c3c; /* Color de fondo rojo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+}
+
+/* Efecto hover del botón */
+.login-button:hover {
+    background-color: #c0392b; /* Color más oscuro al pasar el cursor */
+    transform: scale(1.05); /* Aumentar tamaño ligeramente */
+}
+
+/* Estilo responsive para pantallas pequeñas */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px; /* Espaciado interno en pantallas pequeñas */
+    }
+
+    .container h1 {
+        font-size: 36px; /* Tamaño del título reducido */
+    }
+
+    .container p {
+        font-size: 16px; /* Tamaño del texto reducido */
+    }
+}

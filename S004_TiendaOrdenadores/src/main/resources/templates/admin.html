@@ -13,88 +13,105 @@
 
 	<div class="adminContainer">
 
-
 		<div class="Tables">
-			<h2>Ordenadores</h2>
-			<table border="1" class="table">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Modelo</th>
-						<th>Marca</th>
-						<th>Anotaciones</th>
-						<th>Capacidad</th>
-						<th>numeroSerie</th>
-						<th>Ram</th>
-						<th>Opciones</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="elem : ${atr_lista_ordenadores}">
-						<td th:text="${elem.id}">Id</td>
-						<td th:text="${elem.modelo.nombre}">Modelo</td>
-						<td th:text="${elem.marca.nombre}">Marca</td>
-						<td th:text="${elem.anotaciones}">Anotaciones</td>
-						<td th:text="${elem.capacidad}">Capacidad</td>
-						<td th:text="${elem.numeroSerie}">Numero de serie</td>
-						<td th:text="${elem.ram}">Ram</td>
-						<td>
-							<a th:href="@{/adminBorrarOrdenador(id=${elem.id})}">Borrar</a>
-							<a th:href="@{/adminFrmModificarOrdenador(id=${elem.id})}">Modificar</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<h2>Marcas</h2>
-			<table border="1" class="table">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Nombre</th>
-						<th>Opciones</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="elem : ${atr_lista_marcas}">
-						<td th:text="${elem.id}">Id</td>
-						<td th:text="${elem.nombre}">Nombre</td>
-						<td>
-							<a th:href="@{/adminBorrarMarca(id=${elem.id})}">Borrar</a>
-							<a th:href="@{/adminFrmModificarMarca(id=${elem.id})}">Modificar</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<h2>Modelos</h2>
-			<table border="1" class="table">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Nombre</th>
-						<th>Opciones</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="elem : ${atr_lista_modelos}">
-						<td th:text="${elem.id}">Id</td>
-						<td th:text="${elem.nombre}">Nombre</td>
-						<td>
-							<a th:href="@{/adminBorrarModelo(id=${elem.id})}">Borrar</a>
-							<a th:href="@{/adminFrmModificarModelo(id=${elem.id})}">Modificar</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="filtroContainer">
+			  <form th:action="@{/buscarPorNumeroSerie}" method="GET">
+			    <label for="numeroSerie">Buscar por Número de Serie:</label>
+			    <input type="text" id="numeroSerie" name="numeroSerie" placeholder="Introduce el número de serie" required>
+			    <input type="submit" value="Buscar">
+			  </form>
+
+			  <!-- Formulario para resetear los filtros -->
+			  <form th:action="@{/resetearFiltro}" method="GET">
+			    <input type="submit" value="Resetear Filtros">
+			  </form>
+			</div>
+
+			<div class="Ordenadores">
+				<h2>Ordenadores</h2>
+				<table border="1" class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Modelo</th>
+							<th>Marca</th>
+							<th>Anotaciones</th>
+							<th>Capacidad</th>
+							<th>numeroSerie</th>
+							<th>Ram</th>
+							<th>Opciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="elem : ${atr_lista_ordenadores}">
+							<td th:text="${elem.id}">Id</td>
+							<td th:text="${elem.modelo.nombre}">Modelo</td>
+							<td th:text="${elem.marca.nombre}">Marca</td>
+							<td th:text="${elem.anotaciones}">Anotaciones</td>
+							<td th:text="${elem.capacidad}">Capacidad</td>
+							<td th:text="${elem.numeroSerie}">Numero de serie</td>
+							<td th:text="${elem.ram}">Ram</td>
+							<td>
+								<a th:href="@{/adminBorrarOrdenador(id=${elem.id})}">Borrar</a>
+								<a th:href="@{/adminFrmModificarOrdenador(id=${elem.id})}">Modificar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="ModeloMarcacontainer">
+				<div class="Marcas">
+					<h2>Marcas</h2>
+					<table border="1" class="table">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Opciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="elem : ${atr_lista_marcas}">
+								<td th:text="${elem.id}">Id</td>
+								<td th:text="${elem.nombre}">Nombre</td>
+								<td>
+									<a th:href="@{/adminBorrarMarca(id=${elem.id})}">Borrar</a>
+									<a th:href="@{/adminFrmModificarMarca(id=${elem.id})}">Modificar</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="Modelos">
+					<h2>Modelos</h2>
+					<table border="1" class="table">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Opciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="elem : ${atr_lista_modelos}">
+								<td th:text="${elem.id}">Id</td>
+								<td th:text="${elem.nombre}">Nombre</td>
+								<td>
+									<a th:href="@{/adminBorrarModelo(id=${elem.id})}">Borrar</a>
+									<a th:href="@{/adminFrmModificarModelo(id=${elem.id})}">Modificar</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 		<div class="SectionActions">
 			<div class="FormsContainer">
 				<h2>Añadir Producto</h2>
 
 				<form method="post" th:action="@{/adminAnadirOrdenador}" th:object="${obj_ordenador}">
-
-					<label>ID: </label>
-					<input type="text" th:field="*{id}">
-					<br>
 
 					<label>Marca: </label>
 					<select th:field="*{marca.id}">
@@ -147,28 +164,18 @@
 					<input type="submit" value="Insertar marca">
 					<div class="ButtonsContainer">
 						<h2>Generar copia de Seguridad</h2>
-						
+
 						<form action="/copiaSeguridadOrdenadores" method="POST">
 							<input type="submit" value="Generar CSV Modelos" />
 						</form>
-						
+
 						<form action="/copiaSeguridadModelos" method="POST">
 							<input type="submit" value="Generar CSV Modelos" />
 						</form>
 						<form action="/copiaSeguridadMarcas" method="POST">
 							<input type="submit" value="Generar CSV Marcas" />
 						</form>
-						
-						<h2>Restaurar copia de Seguridad</h2>
-						<form action="/restaurarOrdenadores" method="POST">
-							<input type="submit" value="Restaurar CSV Ordenadores" />
-						</form>
-						<form action="/restaurarModelos" method="POST">
-							<input type="submit" value="Restaurar CSV Modelos" />
-						</form>
-						<form action="/restaurarMarcas" method="POST">
-							<input type="submit" value="Restaurar CSV Marcas" />
-						</form>
+
 					</div>
 				</form>
 			</div>

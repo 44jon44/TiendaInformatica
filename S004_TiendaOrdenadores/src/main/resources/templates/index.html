@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Index</title>
+	<title>Inicio</title>
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -13,12 +13,12 @@
 
 	<main>
 		<section class="tiendaContainer">
-			<table border="1">
+			<table class="tablaIndex" border="1">
 				<thead>
 					<tr>
 						<th>Id</th>
 						<th>Modelo</th>
-						<th>Marca</th>	
+						<th>Marca</th>
 						<th>Anotaciones</th>
 						<th>Capacidad</th>
 						<th>numeroSerie</th>
@@ -33,11 +33,19 @@
 						<td th:text="${elem.anotaciones}">Anotaciones</td>
 						<td th:text="${elem.capacidad}">Capacidad</td>
 						<td th:text="${elem.numeroSerie}">Numero de serie</td>
-						<td th:text="${elem.ram}">Ram</td>						
+						<td th:text="${elem.ram}">Ram</td>
 					</tr>
 				</tbody>
 			</table>
 		</section>
+		<footer style="font-size: large" class="panel-footer">
+		    Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
+		    &nbsp; &nbsp; - &nbsp;
+		    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+		        <a th:href="@{'/' + ${i}}">[[${i}]]</a>
+		        &nbsp; &nbsp;
+		    </span>
+		</footer>
 	</main>
 </body>
 
