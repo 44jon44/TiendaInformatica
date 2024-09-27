@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -30,4 +31,13 @@ public interface OrdenadorRepository extends JpaRepository<Ordenador, Integer> {
 	@Query(value = "SELECT * FROM ordenadores where numeroSerie= :numeroSerie",nativeQuery = true)
 	List<Ordenador> buscarProducto(String numeroSerie);
 	
+	
+
+
+
+	public default Page<Ordenador> findPage(int pageNumber){
+	    Pageable pageable = PageRequest.of(pageNumber - 1,5);
+	    return findAll(pageable);
+	}
 }
+

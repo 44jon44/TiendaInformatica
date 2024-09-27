@@ -17,13 +17,13 @@ public class OrdenadorService {
 	@Autowired
 	private OrdenadorRepository ordenadoresRepo;
 
-    public List<Ordenador> findAll(){
-        return ordenadoresRepo.findAll();
-    }
-
-
-	public Page<Ordenador> findPage(int pageNumber){
-	    Pageable pageable = PageRequest.of(pageNumber - 1,5);
-	    return ordenadoresRepo.findAll(pageable);
-	}
+//    public List<Ordenador> findAll(){
+//        return ordenadoresRepo.findAll();
+//    }
+//
+//
+//	public Page<Ordenador> findPage(int pageNumber){
+//	    Pageable pageable = PageRequest.of(pageNumber - 1,5);
+//	    return ordenadoresRepo.findAll(pageable);
+//	}
 }

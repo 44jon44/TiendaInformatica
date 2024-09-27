@@ -28,53 +28,37 @@ import com.ipartek.service.OrdenadorService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@RestController
+@Controller
 public class InicioController {
 
 	@Autowired
-	private OrdenadorRepository productosRepo;
+	private OrdenadorRepository ordenadoresRepo;
 	
 	
 	
 	OrdenadorService ord= new OrdenadorService();
 	
 	private static final Logger logger = LogManager.getLogger(AdvancedLogger.class);
-//	@RequestMapping("/")
-//	public String index(@RequestParam(defaultValue = "0") int page,Model model, HttpSession session) {
-//		
-//		
-//		int pageSize = 10; // Número de elementos por página
-//	    Page<Ordenador> ordenadoresPage = ord.findPaginated(PageRequest.of(page, pageSize));
-//		
-//
-////		model.addAttribute("atr_lista_ordenadores", productosRepo.findAll());
-//
-//	    model.addAttribute("atr_lista_ordenadores", ordenadoresPage.getContent());
-//	    model.addAttribute("currentPage", page);
-//	    model.addAttribute("totalPages", ordenadoresPage.getTotalPages());
-//		
-//	
-//		session.setAttribute("rol", Privilegio.USUARIO);
-//		session.setAttribute("Intentos", 0);
-//		return "index";
-//
-//	}
+
 	@GetMapping("/{pageNumber}")
 	public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage){
-	    Page<Ordenador> page = ord.findPage(currentPage);
+	    Page<Ordenador> page = ordenadoresRepo.findPage(currentPage);
+	    System.out.println(page);
 	    int totalPages = page.getTotalPages();
 	    long totalItems = page.getTotalElements();
-	    List<Ordenador> countries = page.getContent();
+	    List<Ordenador> ordenadores = page.getContent();
 
 	    model.addAttribute("currentPage", currentPage);
 	    model.addAttribute("totalPages", totalPages);
 	    model.addAttribute("totalItems", totalItems);
-	    model.addAttribute("countries", countries);
+	    model.addAttribute("atr_lista_ordenadores", ordenadores);
 
 	    return "index";
 	}
 	@GetMapping("/")
-	public String getAllPages(Model model){
+	public String getAllPages(Model model , HttpSession session){
+		session.setAttribute("rol", Privilegio.USUARIO);
+		session.setAttribute("Intentos", 0);
 	    return getOnePage(model, 1);
 	}
 	
