@@ -42,8 +42,8 @@ public class MenuController {
 	@RequestMapping("/formLogin")
 	public String formLogin(Model model, HttpSession session) {
 		if (session.getAttribute("rol").equals(Privilegio.ADMIN)) {
-			
-            return "redirect:/admin";
+
+			return "redirect:/admin";
 		}
 		model.addAttribute("obj_usuario", new Usuario());
 
@@ -51,63 +51,68 @@ public class MenuController {
 	}
 
 	@RequestMapping("/login")
-	public String login(Model model, @ModelAttribute(value = "obj_usuario") Usuario user, HttpSession session) {	
-	    // Ensure session attribute exists or set default value for this user
-	    Integer intentos = (Integer) session.getAttribute("Intentos_" + user.getNombre());
-	    if (intentos == null) {
-	        intentos = 0;
-	    }
-	            
-        logger.info("Se ha intentado iniciar sesion con el usuario: "+user.getNombre()+" con la contraseña: "+user.getContraseña());
-        
-	    // Fetch all users
-	    List<Usuario> usuarios = usuariosRepo.findAll();
-	    
-	    for (Usuario elem : usuarios) {
-	        // Check if username and password match
-	        if (elem.getNombre().equals(user.getNombre()) && elem.getContraseña().equals(Hashing.hash(user.getContraseña()))) {
+	public String login(Model model, @ModelAttribute(value = "obj_usuario") Usuario user, HttpSession session) {
+		// Ensure session attribute exists or set default value for this user
+		Integer intentos = (Integer) session.getAttribute("Intentos_" + user.getNombre());
+		if (intentos == null) {
+			intentos = 0;
+		}
 
-	            // Reset intentos after a successful login
-	            session.setAttribute("Intentos_" + user.getNombre(), 0);
+		logger.info("Se ha intentado iniciar sesion con el usuario: " + user.getNombre() + " con la contraseña: "
+				+ user.getContraseña());
 
-	            session.setAttribute("rol", elem.getPriv());
+		// Fetch all users
+		List<Usuario> usuarios = usuariosRepo.findAll();
 
-	            // Redirect to admin if the user is an admin
-	            if (elem.getPriv().equals(Privilegio.ADMIN)) {
-	            	return "redirect:/admin";
-	            }
-	            if(elem.getPriv().equals(Privilegio.USUARIO)) {
-	            // Redirect to index if user is not admin (default behavior)
+		for (Usuario elem : usuarios) {
+			// Check if username and password match
+			if (elem.getNombre().equals(user.getNombre())
+					&& elem.getContraseña().equals(Hashing.hash(user.getContraseña()))) {
 
-	            return "redirect:/index";
-	            }else if (elem.getPriv().equals(Privilegio.BLOQUEADO)) {
-	    	        return "redirect:https://www.google.es/";
+				// Reset intentos after a successful login
+				session.setAttribute("Intentos_" + user.getNombre(), 0);
+
+				session.setAttribute("rol", elem.getPriv());
+
+				// Redirect to admin if the user is an admin
+				if (elem.getPriv().equals(Privilegio.ADMIN)) {
+					logger.info("El usuario admin: "+elem.getNombre()+" ha iniciado sesion");
+					return "redirect:/admin";
+					
+				}
+				if (elem.getPriv().equals(Privilegio.USUARIO)) {
+					// Redirect to index if user is not admin (default behavior)
+					logger.info("El usuario : "+elem.getNombre()+" ha iniciado sesion");
+					return "redirect:/index";
+				} else if (elem.getPriv().equals(Privilegio.BLOQUEADO)) {
+					logger.warn("El usuario bloqueado con id: " + elem.getId() + " ha intentado inicar sesion");
+					return "redirect:https://www.google.es/";
 
 				}
-	        }
-	        session.setAttribute("usuario", user.getNombre());
-	    }
+			}
+			session.setAttribute("usuario", user.getNombre());
+		}
+		logger.warn("El usuario: " + user.getNombre() + " ha realizado un intento fallido de iniciar sesion");
+		// If no users match, increment attempts and handle blocking
+		intentos++;
+		session.setAttribute("Intentos_" + user.getNombre(), intentos);
 
-	    // If no users match, increment attempts and handle blocking
-	    intentos++;
-	    session.setAttribute("Intentos_" + user.getNombre(), intentos);
+		if (intentos > 3) {
+			// Fetch the actual user from repository and update the privilege
+			Usuario blockedUser = usuariosRepo.findByNombre(user.getNombre());
+			if (blockedUser != null) {
+				logger.warn("El usuario: " + user.getNombre() + " ha sido bloqueado");
+				blockedUser.setPriv(Privilegio.BLOQUEADO);
+				usuariosRepo.save(blockedUser);
+			}
+			session.setAttribute("rol", Privilegio.BLOQUEADO);
+			return "redirect:https://www.google.es/";
+		}
 
-	    if (intentos > 3) {
-	        // Fetch the actual user from repository and update the privilege
-	        Usuario blockedUser = usuariosRepo.findByNombre(user.getNombre());
-	        if (blockedUser != null) {
-	            blockedUser.setPriv(Privilegio.BLOQUEADO);
-	            usuariosRepo.save(blockedUser);
-	        }       
-	        session.setAttribute("rol", Privilegio.BLOQUEADO);
-	        return "redirect:https://www.google.es/";
-	    }
-
-	    // If login fails, return to login page with an error message
-	    model.addAttribute("loginError", "Invalid username or password. Attempts: " + intentos);
-	    return "login";
+		// If login fails, return to login page with an error message
+		logger.warn("Sesion bloqueada");
+		model.addAttribute("loginError", "Invalid username or password. Attempts: " + intentos);
+		return "login";
 	}
-
-
 
 }

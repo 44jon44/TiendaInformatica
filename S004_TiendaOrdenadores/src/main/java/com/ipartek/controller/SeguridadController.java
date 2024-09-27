@@ -48,7 +48,7 @@ public class SeguridadController {
 		session.setAttribute("modificacion", "copiaSeguridadModelos");
 
 		CSVWriter.escribirCSV("src/main/resources/copiasSeguridad/modelos.csv", listaModelo, session);
-
+		logger.info("Se ha generado la copia de seguridad de Modelos");
 		return "redirect:/admin";
 	}
 
@@ -61,7 +61,7 @@ public class SeguridadController {
 		List<Object> listaMarca = new ArrayList<>(marcasRepo.findAll());
 		session.setAttribute("modificacion", "copiaSeguridadMarcas");
 		CSVWriter.escribirCSV("src/main/resources/copiasSeguridad/marcas.csv", listaMarca, session);
-
+		logger.info("Se ha generado la copia de seguridad de Marcas");
 		return "redirect:/admin";
 	}
 
@@ -75,7 +75,7 @@ public class SeguridadController {
 		List<Object> listaOrd = new ArrayList<>(ordenadoresRepo.findAll());
 		session.setAttribute("modificacion", "copiaSeguridadOrdenadores");
 		CSVWriter.escribirCSV("src/main/resources/copiasSeguridad/ordenadores.csv", listaOrd, session);
-
+		logger.info("Se ha generado la copia de seguridad de Ordenadores");
 		return "redirect:/admin";
 	}
 }

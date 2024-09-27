@@ -15,16 +15,17 @@
 
 		<div class="Tables">
 			<div class="filtroContainer">
-			  <form th:action="@{/buscarPorNumeroSerie}" method="GET">
-			    <label for="numeroSerie">Buscar por Número de Serie:</label>
-			    <input type="text" id="numeroSerie" name="numeroSerie" placeholder="Introduce el número de serie" required>
-			    <input type="submit" value="Buscar">
-			  </form>
+				<form th:action="@{/buscarPorNumeroSerie}" method="GET">
+					<label for="numeroSerie">Buscar por Número de Serie:</label>
+					<input type="text" id="numeroSerie" name="numeroSerie" placeholder="Introduce el número de serie"
+						required>
+					<input type="submit" value="Buscar">
+				</form>
 
-			  <!-- Formulario para resetear los filtros -->
-			  <form th:action="@{/resetearFiltro}" method="GET">
-			    <input type="submit" value="Resetear Filtros">
-			  </form>
+				<!-- Formulario para resetear los filtros -->
+				<form th:action="@{/resetearFiltro}" method="GET">
+					<input type="submit" value="Resetear Filtros">
+				</form>
 			</div>
 
 			<div class="Ordenadores">
@@ -58,6 +59,14 @@
 						</tr>
 					</tbody>
 				</table>
+				<footer style="font-size: large" class="panel-footer">
+					Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
+					&nbsp; &nbsp; - &nbsp;
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:href="@{'/admin' + ${i}}">[[${i}]]</a>
+						&nbsp; &nbsp;
+					</span>
+				</footer>
 			</div>
 
 			<div class="ModeloMarcacontainer">

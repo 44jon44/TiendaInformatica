@@ -1,0 +1,18 @@
+2024-09-27 11:39:50.775  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Starting S004TiendaOrdenadoresApplication using Java 21.0.3 with PID 9096 (C:\Users\HTML\git\tiendaInformatica\S004_TiendaOrdenadores\target\classes started by HTML in C:\Users\HTML\git\tiendaInformatica\S004_TiendaOrdenadores)
+2024-09-27 11:39:50.782 DEBUG DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-09-27 11:39:50.783  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-09-27 11:39:54.459  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Started S004TiendaOrdenadoresApplication in 3.991 seconds (process running for 4.951)
+2024-09-27 11:39:56.053  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-1]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-09-27 11:58:11.365  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Starting S004TiendaOrdenadoresApplication using Java 21.0.3 with PID 9096 (C:\Users\HTML\git\tiendaInformatica\S004_TiendaOrdenadores\target\classes started by HTML in C:\Users\HTML\git\tiendaInformatica\S004_TiendaOrdenadores)
+2024-09-27 11:58:11.366 DEBUG DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-09-27 11:58:11.366  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-09-27 11:58:11.965  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Started S004TiendaOrdenadoresApplication in 0.65 seconds (process running for 1102.445)

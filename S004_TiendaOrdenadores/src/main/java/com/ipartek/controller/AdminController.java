@@ -9,9 +9,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,28 +44,45 @@ public class AdminController {
 
 	private static final Logger logger = LogManager.getLogger(AdvancedLogger.class);
 
-	@RequestMapping("/admin")
-	public String admin(Model model, @ModelAttribute("obj_ordenador") Ordenador ord, HttpSession session) {
-		if (session.getAttribute("rol").equals(Privilegio.ADMIN)) {
 
+	@GetMapping("/admin{pageNumber}")
+	public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage, HttpSession session) {
+		if (session.getAttribute("rol").equals(Privilegio.ADMIN)) {
+			Page<Ordenador> page = ordenadoresRepo.findPage(currentPage);
+
+			int totalPages = page.getTotalPages();
+			long totalItems = page.getTotalElements();
+			List<Ordenador> ordenadores = page.getContent();
+
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("totalPages", totalPages);
+			model.addAttribute("totalItems", totalItems);
+			
+			
+			model.addAttribute("atr_lista_ordenadores", ordenadores);
 			model.addAttribute("atr_lista_marcas", marcasRepo.findAll());
 			model.addAttribute("atr_lista_modelos", modelosRepo.findAll());
-			model.addAttribute("atr_lista_ordenadores", ordenadoresRepo.findAll());
+			
 
 			model.addAttribute("obj_marca", new Marca());
 			model.addAttribute("obj_modelo", new Modelo());
 			model.addAttribute("obj_ordenador", new Ordenador());
 
 			return "admin";
-		} else {
+		}else {
 			return "redirect:https://www.google.es/";
 		}
+	}
 
+	@GetMapping("/admin")
+	public String getAllPages(Model model, HttpSession session) {
+
+		return getOnePage(model, 1, session);
 	}
 
 	@RequestMapping("/adminlogOut")
 	public String cerrarSesion(Model model, HttpSession session) {
-
+		logger.info("Se ha cerrado sesion");
 		session.invalidate();
 
 		return "redirect:/";
@@ -70,7 +90,7 @@ public class AdminController {
 
 	@RequestMapping("/adminBorrarOrdenador")
 	public String borrarAdmin(Model model, int id, HttpSession session) {
-
+		
 		try {
 			ordenadoresRepo.deleteById(id);
 		} catch (NumberFormatException e) {
@@ -78,6 +98,7 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		session.setAttribute("modificacion", "borrarOrdenador");
+		logger.info("El ordenador con id: "+id+" ha sido borrado");
 		return "redirect:/admin";
 	}
 
@@ -96,6 +117,7 @@ public class AdminController {
 		}
 
 		model.addAttribute("obj_ordenador", ordenador);
+		
 		return "frm_modificar_ordenadores";
 	}
 
@@ -106,6 +128,7 @@ public class AdminController {
 		ordenadoresRepo.save(ordenador);
 
 		session.setAttribute("modificacion", "modificarOrdenador");
+		logger.info("El ordenador con id: "+ordenador.getId()+" ha sido modificado");
 		return "redirect:/admin";
 	}
 
@@ -117,6 +140,7 @@ public class AdminController {
 		ordenadoresRepo.save(ordenador);
 
 		session.setAttribute("modificacion", "anadirOrdenador");
+		logger.info("El ordenador con id: "+ordenador.getId()+" ha sido anadido");
 		return "redirect:/admin";
 	}
 
@@ -128,7 +152,7 @@ public class AdminController {
 		model.addAttribute("obj_modelo", new Modelo());
 
 		List<Ordenador> listaProd = ordenadoresRepo.buscarProducto(ordenador.getNumeroSerie());
-		
+
 		model.addAttribute("atr_lista_ordenadores", listaProd);
 		model.addAttribute("atr_lista_marcas", marcasRepo.findAll());
 		model.addAttribute("atr_lista_modelos", modelosRepo.findAll());
@@ -136,14 +160,13 @@ public class AdminController {
 		session.setAttribute("modificacion", "buscarProducto");
 		return "admin";
 	}
+
 	@RequestMapping("/resetearFiltro")
 	public String restearFiltroAdmin(Model model, @ModelAttribute(value = "obj_ordenador") Ordenador ordenador,
 			HttpSession session) {
 		return "redirect:/admin";
 	}
-	
-	
-	
+
 	@RequestMapping("/adminBorrarMarca")
 	public String borrarMarcaAdmin(Model model, int id, HttpSession session) {
 
@@ -155,6 +178,7 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		session.setAttribute("modificacion", "borrarOrdenador");
+		logger.info("La marca con id: "+id+" ha sido borrado");
 		return "redirect:/admin";
 	}
 
@@ -183,6 +207,8 @@ public class AdminController {
 		marcasRepo.save(marca);
 
 		session.setAttribute("modificacion", "modificarMarca");
+		logger.info("La marca con id: "+marca.getId()+" ha sido borrado");
+
 		return "redirect:/admin";
 	}
 
@@ -194,6 +220,8 @@ public class AdminController {
 		marcasRepo.save(marca);
 
 		session.setAttribute("modificacion", "anadirMarca");
+		logger.info("La marca con id: "+marca.getId()+" ha sido anadida");
+
 		return "redirect:/admin";
 	}
 
@@ -209,6 +237,7 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		session.setAttribute("modificacion", "borrarModelo");
+		logger.info("El modelo con id: "+id+" ha sido borrado");
 		return "redirect:/admin";
 	}
 
@@ -237,6 +266,8 @@ public class AdminController {
 		modelosRepo.save(modelo);
 
 		session.setAttribute("modificacion", "modificarModelo");
+		logger.info("El ordenador con id: "+modelo.getId()+" ha sido modificado");
+
 		return "redirect:/admin";
 	}
 
@@ -249,6 +280,8 @@ public class AdminController {
 		modelosRepo.save(modelo);
 
 		session.setAttribute("modificacion", "anadirModelo");
+		logger.info("El ordenador con id: "+modelo.getId()+" ha sido modificado");
+
 		return "redirect:/admin";
 	}
 }

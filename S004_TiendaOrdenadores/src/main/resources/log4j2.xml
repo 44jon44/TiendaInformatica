@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+	<Properties>
+		<Property name="LOG_PATTERN">
+			%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t]
+			%-40.40c{1.} : %m%n%ex
+		</Property>
+	</Properties>
+
+	<Appenders>
+		<!-- Consola: Para logs de Spring y otros frameworks -->
+		<Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+
+		<!-- Archivo: Solo para los logs de tu aplicación -->
+		<RollingFile name="FileAppender" fileName="logs/my-app.log"
+			filePattern="logs/my-app-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="org.springframework.boot" level="warn" additivity="false">
+			<AppenderRef ref="ConsoleAppender" />
+		</Logger>
+		<Logger name="org.springframework.boot.context.logging" level="warn" additivity="false">
+            <AppenderRef ref="ConsoleAppender" />
+        </Logger>
+        
+		<!-- Logger para tus logs (com.example.miapp), solo en el archivo -->
+		<Logger name="com.ipartek" level="debug" additivity="false">
+			<AppenderRef ref="FileAppender" />
+		</Logger>
+
+		<!-- Loggers de frameworks externos como Spring y Hikari, solo en la
+		consola -->
+		<Logger name="org.springframework" level="info" additivity="false">
+			<AppenderRef ref="ConsoleAppender" />
+		</Logger>
+		<Logger name="org.apache" level="info" additivity="false">
+			<AppenderRef ref="ConsoleAppender" />
+		</Logger>
+		<Logger name="com.zaxxer.hikari" level="info" additivity="false">
+			<AppenderRef ref="ConsoleAppender" />
+		</Logger>
+
+		<!-- Logger raíz: Solo en la consola para evitar que otros logs no
+		deseados vayan al archivo -->
+		<Root level="info" additivity="false">
+			<AppenderRef ref="ConsoleAppender" />
+		</Root>
+	</Loggers>
+</Configuration>

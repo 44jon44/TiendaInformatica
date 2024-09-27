@@ -42,6 +42,7 @@ public class InicioController {
 
 	@GetMapping("/{pageNumber}")
 	public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage){
+		logger.info("Se ha iniciado el programa");
 	    Page<Ordenador> page = ordenadoresRepo.findPage(currentPage);
 	    System.out.println(page);
 	    int totalPages = page.getTotalPages();
