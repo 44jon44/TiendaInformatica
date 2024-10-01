@@ -44,10 +44,10 @@ public class AdminController {
 
 	private static final Logger logger = LogManager.getLogger(AdvancedLogger.class);
 
-
 	@GetMapping("/admin{pageNumber}")
 	public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage, HttpSession session) {
 		if (session.getAttribute("rol").equals(Privilegio.ADMIN)) {
+
 			Page<Ordenador> page = ordenadoresRepo.findPage(currentPage);
 
 			int totalPages = page.getTotalPages();
@@ -57,19 +57,17 @@ public class AdminController {
 			model.addAttribute("currentPage", currentPage);
 			model.addAttribute("totalPages", totalPages);
 			model.addAttribute("totalItems", totalItems);
-			
-			
+
 			model.addAttribute("atr_lista_ordenadores", ordenadores);
 			model.addAttribute("atr_lista_marcas", marcasRepo.findAll());
 			model.addAttribute("atr_lista_modelos", modelosRepo.findAll());
-			
 
 			model.addAttribute("obj_marca", new Marca());
 			model.addAttribute("obj_modelo", new Modelo());
 			model.addAttribute("obj_ordenador", new Ordenador());
 
 			return "admin";
-		}else {
+		} else {
 			return "redirect:https://www.google.es/";
 		}
 	}
@@ -78,6 +76,43 @@ public class AdminController {
 	public String getAllPages(Model model, HttpSession session) {
 
 		return getOnePage(model, 1, session);
+	}
+
+	@RequestMapping("/buscarPorNumeroSerie")
+	public String getAllPagesB(Model model, HttpSession session,
+			@ModelAttribute(value = "obj_ordenador") Ordenador ordenador) {
+
+		return getOnePageFind(model, 1, session,ordenador.getNumeroSerie());
+	}
+
+	@GetMapping("/buscarPorNumeroSerie{pageNumber}")
+	public String getOnePageFind(Model model, @PathVariable("pageNumber") int currentPage, HttpSession session, String numeroSerie) {
+
+		Page<Ordenador> page = ordenadoresRepo.findPageB(currentPage, numeroSerie);
+
+		int totalPages = page.getTotalPages();
+		long totalItems = page.getTotalElements();
+		List<Ordenador> ordenadores = page.getContent();
+
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("totalItems", totalItems);
+
+		model.addAttribute("atr_lista_ordenadores", ordenadores);
+		model.addAttribute("atr_lista_marcas", marcasRepo.findAll());
+		model.addAttribute("atr_lista_modelos", modelosRepo.findAll());
+
+		model.addAttribute("obj_marca", new Marca());
+		model.addAttribute("obj_modelo", new Modelo());
+		model.addAttribute("obj_ordenador", new Ordenador());
+
+		return "admin";
+	}
+
+	@RequestMapping("/resetearFiltro")
+	public String restearFiltroAdmin(Model model, @ModelAttribute(value = "obj_ordenador") Ordenador ordenador,
+			HttpSession session) {
+		return "redirect:/admin";
 	}
 
 	@RequestMapping("/adminlogOut")
@@ -90,7 +125,7 @@ public class AdminController {
 
 	@RequestMapping("/adminBorrarOrdenador")
 	public String borrarAdmin(Model model, int id, HttpSession session) {
-		
+
 		try {
 			ordenadoresRepo.deleteById(id);
 		} catch (NumberFormatException e) {
@@ -98,7 +133,7 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		session.setAttribute("modificacion", "borrarOrdenador");
-		logger.info("El ordenador con id: "+id+" ha sido borrado");
+		logger.info("El ordenador con id: " + id + " ha sido borrado");
 		return "redirect:/admin";
 	}
 
@@ -117,7 +152,7 @@ public class AdminController {
 		}
 
 		model.addAttribute("obj_ordenador", ordenador);
-		
+
 		return "frm_modificar_ordenadores";
 	}
 
@@ -128,7 +163,7 @@ public class AdminController {
 		ordenadoresRepo.save(ordenador);
 
 		session.setAttribute("modificacion", "modificarOrdenador");
-		logger.info("El ordenador con id: "+ordenador.getId()+" ha sido modificado");
+		logger.info("El ordenador con id: " + ordenador.getId() + " ha sido modificado");
 		return "redirect:/admin";
 	}
 
@@ -140,30 +175,7 @@ public class AdminController {
 		ordenadoresRepo.save(ordenador);
 
 		session.setAttribute("modificacion", "anadirOrdenador");
-		logger.info("El ordenador con id: "+ordenador.getId()+" ha sido anadido");
-		return "redirect:/admin";
-	}
-
-	@RequestMapping("/buscarPorNumeroSerie")
-	public String buscarNumeroSerieAdmin(Model model, @ModelAttribute(value = "obj_ordenador") Ordenador ordenador,
-			HttpSession session) {
-		model.addAttribute("obj_ordenador", new Ordenador());
-		model.addAttribute("obj_marca", new Marca());
-		model.addAttribute("obj_modelo", new Modelo());
-
-		List<Ordenador> listaProd = ordenadoresRepo.buscarProducto(ordenador.getNumeroSerie());
-
-		model.addAttribute("atr_lista_ordenadores", listaProd);
-		model.addAttribute("atr_lista_marcas", marcasRepo.findAll());
-		model.addAttribute("atr_lista_modelos", modelosRepo.findAll());
-
-		session.setAttribute("modificacion", "buscarProducto");
-		return "admin";
-	}
-
-	@RequestMapping("/resetearFiltro")
-	public String restearFiltroAdmin(Model model, @ModelAttribute(value = "obj_ordenador") Ordenador ordenador,
-			HttpSession session) {
+		logger.info("El ordenador con id: " + ordenador.getId() + " ha sido anadido");
 		return "redirect:/admin";
 	}
 
@@ -178,7 +190,7 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		session.setAttribute("modificacion", "borrarOrdenador");
-		logger.info("La marca con id: "+id+" ha sido borrado");
+		logger.info("La marca con id: " + id + " ha sido borrado");
 		return "redirect:/admin";
 	}
 
@@ -207,7 +219,7 @@ public class AdminController {
 		marcasRepo.save(marca);
 
 		session.setAttribute("modificacion", "modificarMarca");
-		logger.info("La marca con id: "+marca.getId()+" ha sido borrado");
+		logger.info("La marca con id: " + marca.getId() + " ha sido borrado");
 
 		return "redirect:/admin";
 	}
@@ -220,7 +232,7 @@ public class AdminController {
 		marcasRepo.save(marca);
 
 		session.setAttribute("modificacion", "anadirMarca");
-		logger.info("La marca con id: "+marca.getId()+" ha sido anadida");
+		logger.info("La marca con id: " + marca.getId() + " ha sido anadida");
 
 		return "redirect:/admin";
 	}
@@ -237,7 +249,7 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		session.setAttribute("modificacion", "borrarModelo");
-		logger.info("El modelo con id: "+id+" ha sido borrado");
+		logger.info("El modelo con id: " + id + " ha sido borrado");
 		return "redirect:/admin";
 	}
 
@@ -266,7 +278,7 @@ public class AdminController {
 		modelosRepo.save(modelo);
 
 		session.setAttribute("modificacion", "modificarModelo");
-		logger.info("El ordenador con id: "+modelo.getId()+" ha sido modificado");
+		logger.info("El ordenador con id: " + modelo.getId() + " ha sido modificado");
 
 		return "redirect:/admin";
 	}
@@ -280,7 +292,7 @@ public class AdminController {
 		modelosRepo.save(modelo);
 
 		session.setAttribute("modificacion", "anadirModelo");
-		logger.info("El ordenador con id: "+modelo.getId()+" ha sido modificado");
+		logger.info("El ordenador con id: " + modelo.getId() + " ha sido modificado");
 
 		return "redirect:/admin";
 	}

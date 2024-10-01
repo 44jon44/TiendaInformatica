@@ -29,7 +29,7 @@ public interface OrdenadorRepository extends JpaRepository<Ordenador, Integer> {
 	
 	
 	@Query(value = "SELECT * FROM ordenadores where numeroSerie= :numeroSerie",nativeQuery = true)
-	List<Ordenador> buscarProducto(String numeroSerie);
+	Page<Ordenador> buscarProducto(Pageable pageable, String numeroSerie);
 	
 	
 
@@ -38,6 +38,10 @@ public interface OrdenadorRepository extends JpaRepository<Ordenador, Integer> {
 	public default Page<Ordenador> findPage(int pageNumber){
 	    Pageable pageable = PageRequest.of(pageNumber - 1,5);
 	    return findAll(pageable);
+	}
+	public default Page<Ordenador> findPageB(int pageNumber,String numeroSerie){
+	    Pageable pageable = PageRequest.of(pageNumber - 1,5);
+	    return buscarProducto(pageable,numeroSerie);
 	}
 }
 

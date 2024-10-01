@@ -16,3 +16,105 @@
 			c.i.S004TiendaOrdenadoresApplication     : No active profile set, falling back to 1 default profile: "default"
 2024-09-27 11:58:11.965  INFO DESKTOP-BK63CH3 --- [  restartedMain]
 			c.i.S004TiendaOrdenadoresApplication     : Started S004TiendaOrdenadoresApplication in 0.65 seconds (process running for 1102.445)
+2024-10-01 08:52:03.769  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Starting S004TiendaOrdenadoresApplication using Java 21.0.3 with PID 6244 (C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores\target\classes started by HTML in C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores)
+2024-10-01 08:52:03.776 DEBUG DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-01 08:52:03.777  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-10-01 08:52:07.308  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Started S004TiendaOrdenadoresApplication in 3.831 seconds (process running for 5.025)
+2024-10-01 08:53:33.223  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Starting S004TiendaOrdenadoresApplication using Java 21.0.3 with PID 2652 (C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores\target\classes started by HTML in C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores)
+2024-10-01 08:53:33.229 DEBUG DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-01 08:53:33.230  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-10-01 08:53:36.463  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Started S004TiendaOrdenadoresApplication in 3.491 seconds (process running for 4.356)
+2024-10-01 08:53:39.560  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-1]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 08:53:47.334  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-4]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 08:53:49.132  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-7]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 08:53:50.892  INFO DESKTOP-BK63CH3 --- [io-8080-exec-10]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 08:53:51.885  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-3]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 08:53:56.823  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-6]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 08:53:58.162  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-9]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 08:54:03.527  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-5]
+			c.i.a.AdvancedLogger                     : Se ha intentado iniciar sesion con el usuario: 2 con la contraseña: 2
+2024-10-01 08:54:03.533  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-5]
+			c.i.a.AdvancedLogger                     : El usuario admin: 2 ha iniciado sesion
+2024-10-01 08:54:26.543  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-4]
+			c.i.a.AdvancedLogger                     : Se ha cerrado sesion
+2024-10-01 08:54:26.548  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-5]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 08:54:56.767  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-8]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 08:55:00.640  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-4]
+			c.i.a.AdvancedLogger                     : Se ha intentado iniciar sesion con el usuario: 2 con la contraseña: 2
+2024-10-01 08:55:00.644  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-4]
+			c.i.a.AdvancedLogger                     : El usuario admin: 2 ha iniciado sesion
+2024-10-01 08:55:08.613  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-1]
+			c.i.a.AdvancedLogger                     : Se ha cerrado sesion
+2024-10-01 08:55:08.618  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-2]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 08:56:24.485  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Starting S004TiendaOrdenadoresApplication using Java 21.0.3 with PID 1156 (C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores\target\classes started by HTML in C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores)
+2024-10-01 08:56:24.490 DEBUG DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-01 08:56:24.491  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-10-01 08:56:27.727  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Started S004TiendaOrdenadoresApplication in 3.504 seconds (process running for 4.427)
+2024-10-01 08:56:30.334  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-1]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 08:56:34.600  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-7]
+			c.i.a.AdvancedLogger                     : Se ha intentado iniciar sesion con el usuario: 2 con la contraseña: 2
+2024-10-01 08:56:34.605  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-7]
+			c.i.a.AdvancedLogger                     : El usuario admin: 2 ha iniciado sesion
+2024-10-01 09:03:56.558  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Starting S004TiendaOrdenadoresApplication using Java 21.0.3 with PID 1156 (C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores\target\classes started by HTML in C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores)
+2024-10-01 09:03:56.558 DEBUG DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-01 09:03:56.559  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-10-01 09:08:12.280  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Starting S004TiendaOrdenadoresApplication using Java 21.0.3 with PID 1156 (C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores\target\classes started by HTML in C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores)
+2024-10-01 09:08:12.280 DEBUG DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-01 09:08:12.280  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-10-01 09:11:08.997  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Starting S004TiendaOrdenadoresApplication using Java 21.0.3 with PID 1156 (C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores\target\classes started by HTML in C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores)
+2024-10-01 09:11:08.998 DEBUG DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-01 09:11:08.998  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-10-01 09:11:09.512  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Started S004TiendaOrdenadoresApplication in 0.549 seconds (process running for 886.201)
+2024-10-01 09:11:35.222  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-1]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 09:11:39.134  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-7]
+			c.i.a.AdvancedLogger                     : Se ha intentado iniciar sesion con el usuario: 2 con la contraseña: 2
+2024-10-01 09:11:39.141  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-7]
+			c.i.a.AdvancedLogger                     : El usuario admin: 2 ha iniciado sesion
+2024-10-01 09:15:55.588  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Starting S004TiendaOrdenadoresApplication using Java 21.0.3 with PID 1156 (C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores\target\classes started by HTML in C:\Users\HTML\git\TiendaInformatica\S004_TiendaOrdenadores)
+2024-10-01 09:15:55.589 DEBUG DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-10-01 09:15:55.589  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-10-01 09:15:56.143  INFO DESKTOP-BK63CH3 --- [  restartedMain]
+			c.i.S004TiendaOrdenadoresApplication     : Started S004TiendaOrdenadoresApplication in 0.596 seconds (process running for 1172.832)
+2024-10-01 09:16:02.624  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-1]
+			c.i.a.AdvancedLogger                     : Se ha iniciado el programa
+2024-10-01 09:16:06.285  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-7]
+			c.i.a.AdvancedLogger                     : Se ha intentado iniciar sesion con el usuario: 2 con la contraseña: 2
+2024-10-01 09:16:06.291  INFO DESKTOP-BK63CH3 --- [nio-8080-exec-7]
+			c.i.a.AdvancedLogger                     : El usuario admin: 2 ha iniciado sesion
